@@ -16,18 +16,36 @@ description: Guía para desplegar la aplicación en Railway y conectar el domini
 4.  Railway detectará automáticamente el `Dockerfile` y comenzará a construir tu sitio.
 5.  Espera unos minutos a que termine el despliegue.
 
-## 2. Conectar tu Dominio (.cl)
+## 2. Conectar tu Dominio (NIC Chile + Cloudflare)
 
-1.  En el panel de tu proyecto en Railway, ve a **Settings** -> **Domains**.
-2.  Haz clic en **"Custom Domain"** y escribe `www.comercialcostanorte.cl`.
-3.  Railway te dará un registro DNS (probablemente un `CNAME`).
+Como tienes el dominio en **NIC Chile**, usaremos **Cloudflare** para gestionar los DNS (es gratis y muy rápido).
+
+### Paso A: Configurar Cloudflare
+1.  Crea una cuenta en [Cloudflare.com](https://www.cloudflare.com).
+2.  Haz clic en **"Add a Site"** y escribe `comercialcostanorte.cl`.
+3.  Selecciona el **Plan Free** (abajo del todo).
+4.  Cloudflare escaneará tus DNS. Dale a "Continue".
+5.  Cloudflare te dará dos **Nameservers** (ej: `bob.ns.cloudflare.com` y `lola.ns.cloudflare.com`). **Cópialos**.
+
+### Paso B: Configurar NIC Chile
+1.  Entra a [NIC.cl](https://www.nic.cl) con tu cuenta.
+2.  Selecciona tu dominio `comercialcostanorte.cl`.
+3.  Busca la sección **"Servidores de Nombre" (DNS)**.
+4.  Borra los que haya y pega los dos que te dio Cloudflare.
+5.  Guarda los cambios. (Esto puede tardar desde 1 hora hasta 24 horas en propagarse).
+
+### Paso C: Apuntar a Railway
+1.  Vuelve a **Cloudflare** -> Sección **DNS**.
+2.  Agrega un registro:
     *   **Type**: `CNAME`
     *   **Name**: `www`
-    *   **Value**: `cname.railway.app` (o el valor que te den).
+    *   **Target**: `cname.railway.app` (o el valor que te dio Railway en Settings > Domains).
+    *   **Proxy status**: Puedes dejarlo en "Proxied" (Nube naranja) para tener HTTPS gratis de Cloudflare.
+3.  Agrega otro registro para la raíz (opcional, para que entre sin www):
+    *   **Type**: `CNAME`
+    *   **Name**: `@`
+    *   **Target**: `cname.railway.app` (o el mismo valor de antes).
 
-4.  **Ve a donde compraste tu dominio** (ej: NIC Chile, GoDaddy, o tu hosting actual).
-5.  Busca la zona de **DNS**.
-6.  Agrega el registro CNAME que te dio Railway.
-7.  Espera a que se propaguen los cambios.
-
-¡Listo! Tu sitio estará corriendo en Railway con tu dominio propio.
+### Paso D: Verificar en Railway
+1.  En Railway, Settings > Domains, asegúrate que esté agregado `www.comercialcostanorte.cl`.
+2.  Cuando los tickets de verificación se pongan verdes, ¡tu sitio estará online!
