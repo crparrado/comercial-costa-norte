@@ -24,7 +24,7 @@ export function Navbar() {
         { name: "Productos", href: "#productos" },
         { name: "Sustentabilidad", href: "#sustentabilidad" },
         { name: "Clientes", href: "#clientes" },
-        { name: "Noticias", href: "#noticias" },
+        { name: "Blog", href: "/blog" },
         { name: "Contacto", href: "#contacto" },
     ];
 

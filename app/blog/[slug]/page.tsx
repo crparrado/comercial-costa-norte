@@ -56,7 +56,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 {/* Content */}
                 <div className="container mx-auto px-4 max-w-3xl">
                     <div className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-600 prose-a:text-amber-600 hover:prose-a:text-amber-700 prose-img:rounded-xl prose-strong:text-slate-900">
-                        <MDXRemote source={content} />
+                        <MDXRemote source={content} components={{ Image }} />
                     </div>
                 </div>
             </article>
