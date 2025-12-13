@@ -1,4 +1,5 @@
 import { Leaf, Recycle, Heart } from "lucide-react";
+import Image from "next/image";
 
 export function SustainabilitySection() {
     return (
@@ -41,11 +42,13 @@ export function SustainabilitySection() {
                         </div>
                     </div>
                     <div className="relative h-96 bg-slate-800 rounded-2xl overflow-hidden flex items-center justify-center">
-                        {/* Placeholder for an image */}
-                        <div className="text-center p-8">
-                            <Leaf size={64} className="mx-auto text-green-500 mb-4" />
-                            <p className="text-slate-400">Imagen representativa de naturaleza o proceso textil limpio</p>
-                        </div>
+                        <Image
+                            src="/images/sustent.png"
+                            alt="Compromiso con la sustentabilidad"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                        />
                     </div>
                 </div>
             </div>
