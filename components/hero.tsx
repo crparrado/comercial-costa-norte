@@ -3,12 +3,23 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Ruler, Users } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Hero() {
     return (
         <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-900">
             {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-0" />
+            {/* Background Image & Overlay */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/images/back.png"
+                    alt="Background Comercial Costa Norte"
+                    fill
+                    className="object-cover opacity-40"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-slate-900/60" />
+            </div>
 
             {/* Decorative Elements */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-amber-500/5 skew-x-12 transform origin-top-right z-0" />
